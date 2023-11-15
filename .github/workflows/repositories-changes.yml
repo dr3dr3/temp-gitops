@@ -23,11 +23,11 @@ jobs:
 
       - name: Get Solution Repo's
         id: solution-repos
-        run: echo "SOLUTIONS=$(yq eval '.repositories.solutions[]' repositories.yml -j)" >> $GITHUB_OUTPUT
+        run: echo $(SOLUTIONS=$(yq eval '.repositories.solutions[]' repositories.yml -j) ) >> $GITHUB_OUTPUT
 
       - name: Get Solution Repo's
         id: deployment-repos
-        run: echo "DEPLOYMENT=$(yq eval '.repositories.deployment[]' repositories.yml -j)" >> $GITHUB_OUTPUT
+        run: echo $(DEPLOYMENT=$(yq eval '.repositories.deployment[]' repositories.yml -j) ) >> $GITHUB_OUTPUT
 
   make-changes:
     name: Make changes to repos
