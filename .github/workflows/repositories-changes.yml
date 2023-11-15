@@ -24,7 +24,7 @@ jobs:
       - name: Get Solution Repo's
         id: solution-repos
         run: |
-          soln="$(yq eval '.repositories.solutions[]' repositories.yml -o=json)"
+          soln="$(yq eval '.repositories.solutions[]' repositories.yml -o=json | jq -c)"
           echo $soln
           echo "SOLUTIONS=$soln" >> $GITHUB_OUTPUT
 
