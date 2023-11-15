@@ -24,7 +24,7 @@ jobs:
       - name: Get Solution Repo's
         id: solution-repos
         run: |
-          soln="$(yq eval '.repositories.solutions' repositories.yml -o=json | jq -c)"
+          soln="$(yq eval '.repositories.solutions' repositories.yml -o=json | jq -r 'tostring')"
           echo $soln
           echo "SOLUTIONS=$soln" >> $GITHUB_OUTPUT
 
@@ -33,7 +33,7 @@ jobs:
     needs: [get-config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ needs.get-config.outputs.matrix-solutions }}
+      matrix: ${{ fromJson(needs.get-config.outputs.matrix-solutions) }}
 
     steps:
 
