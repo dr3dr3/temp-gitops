@@ -33,7 +33,7 @@ jobs:
     needs: [get-config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON('{\"include\":[{\"name\":\"start\",\"repo\":\"base-start\"},{\"name\":\"test\",\"repo\":\"base-start\"}]}') }}
+      matrix: ${{ fromJSON('{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}') }}
 
     steps:
 
