@@ -33,7 +33,7 @@ jobs:
     needs: [get-config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
+      matrix: ${{ needs.get-config.outputs.matrix-solutions }}
 
     steps:
 
