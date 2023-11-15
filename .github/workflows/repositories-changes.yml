@@ -1,0 +1,41 @@
+name: REPOSITORY-CHANGES
+run-name: Something
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  get-config:
+    name: Repositories GitOps
+    runs-on: ubuntu-latest
+    #env:
+    #  GH_TOKEN: ${{ secrets.GITOPS_REPOS }}
+    outputs:
+      matrix-solutions: ${{ steps.solution-repos.outputs.SOLUTIONS }}
+
+    steps:
+
+      - name: Checkout GitOps
+        uses: actions/checkout@v3
+
+      - name: Get Solution Repo's
+        id: solution-repos
+        run: echo "SOLUTIONS=$(yq eval '.repositories.solutions[]' repositories.yml -o=json)" >> $GITHUB_OUTPUT
+
+      - name: Get Solution Repo's
+        id: deployment-repos
+        run: echo "DEPLOYMENT=$(yq eval '.repositories.deployment[]' repositories.yml -o=json)" >> $GITHUB_OUTPUT
+
+  make-changes:
+    name: Make changes to repos
+    needs: [get-config]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
+
+    steps:
+
+      - name: Check repo exists
+        run: echo "${{ matrix.repo }}"
+

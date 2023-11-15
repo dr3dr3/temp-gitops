@@ -1,0 +1,37 @@
+repositories:
+  host: dr3dr3
+  solutions:
+    - name: start
+      repo: base-start
+      status: new
+      # new | updated | inactive | removed
+      var-CI_PATTERN: TBD_MAIN
+      var-SITE_URL: https://ci-slides.andredreyer.com/
+      secret-GHA_PAT: true
+      secret-IFTTT: true
+      ci-deploy-to: GHP
+    - name: test
+      repo: base-start
+      status: new
+      # new | updated | inactive | removed
+      var-CI_PATTERN: TBD_MAIN
+      var-SITE_URL: https://ci-slides.andredreyer.com/
+      secret-GHA_PAT: true
+      secret-IFTTT: true
+      ci-deploy-to: GHP
+  core:
+    pipeline:
+      repo: null
+      # Set to null if want to use the shared pipelines below
+      paas: dr3dr3/ss-pipeline
+      # Pipeline-as-a-Service host and repo
+      secret-GHA_PAT: true
+  deployment:
+    stage:
+      repo: devops-demo-stg
+      var-GHP_ENV: stg
+      var-SITE_URL: https://stg.andredreyer.com/
+    production:
+      repo: devops-demo-prd
+      var-GHP_ENV: prd
+      var-SITE_URL: https://www.andredreyer.com/
