@@ -24,8 +24,8 @@ jobs:
       - name: Get Solution Repo's
         id: solution-repos
         run: |
-          soln="$(yq '{\"include\": .repositories.solutions }' repositories.yml -o=json | jq -c)"
-          echo '{"include":'$soln'}'
+          soln=$(yq '{"include": .repositories.solutions }' repositories.yml -o=json | jq -c)
+          echo $soln
           echo "SOLUTIONS=$soln" >> $GITHUB_OUTPUT
 
   make-changes:
