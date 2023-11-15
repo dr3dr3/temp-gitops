@@ -33,10 +33,14 @@ jobs:
     needs: [get-config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON('{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}') }}
+      matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
 
     steps:
 
       - name: Check repo exists
         run: echo "${{ matrix.repo }}"
 
+
+
+
+        # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}'
