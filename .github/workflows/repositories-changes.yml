@@ -42,7 +42,7 @@ jobs:
         id: exists
         with:
           script: |
-            github.rest.repositories.get({
+            github.rest.repos.get({
               owner: context.repo.owner,
               repo: context.repo.repo,              
             })
