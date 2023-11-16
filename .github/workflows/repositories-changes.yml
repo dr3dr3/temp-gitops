@@ -47,9 +47,9 @@ jobs:
 
       - name: Get repo
         id: repos-get
-        run: .github/actions-scripts/repos-get.mjs
+        run: .github/actions-scripts/repo-check-exists.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SETUP_PAT }}
           REPO_OWNER: ${{ github.repository_owner	 }}
           REPO_NAME: ${{ matrix.name }}
 
