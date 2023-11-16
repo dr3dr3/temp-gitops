@@ -45,11 +45,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            await github.rest.issues.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              number: 2
-            })
+            await github.rest.issues.list()
 
       - name: Result
         run: echo "${{ steps.exists.outputs.result }}"
