@@ -44,8 +44,8 @@ jobs:
           result-encoding: string
           script: |
             github.rest.repos.get({
-              owner: 'dr3dr3',
-              repo: 'base-gitops'
+              owner: context.repo.owner,
+              repo: context.repo.repo
             })
 
       - name: Get result
