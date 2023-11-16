@@ -48,9 +48,11 @@ jobs:
               repo: 'ss-gitops'
             })
 
-      - run: echo "${{ steps.exists.outputs.result }}"
+      - name: Result
+        run: echo "${{ steps.exists.outputs.result }}"
 
-      - run: echo $( ${{ matrix }} | jq -r)
+      - name: Echo
+        run: echo "${{ matrix.repo }}"
 
 
         # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}' | jq -r
