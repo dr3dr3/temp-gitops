@@ -64,5 +64,5 @@ jobs:
             }).archived;
 
       - name: Result
-        run: echo '${{ steps.exists.outputs.result }}'
+        run: echo '{ ${{ steps.exists.outputs.result }} }'
 
