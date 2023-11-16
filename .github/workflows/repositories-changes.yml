@@ -45,7 +45,10 @@ jobs:
         with:
           result-encoding: string
           script: |
-            await github.rest.issues.list()
+            await github.rest.repos.getViews({
+              'dr3dr3',
+              'base-gitops'
+            });
 
       - name: Result
         run: echo "${{ steps.exists.outputs.result }}"
