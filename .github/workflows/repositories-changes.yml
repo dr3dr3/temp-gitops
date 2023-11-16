@@ -51,7 +51,7 @@ jobs:
             });
 
       - name: Result
-        run: echo "${{ steps.exists.outputs.result }}"
+        run: echo "${{ toJson(steps.exists.outputs.result) }}"
 
       - name: Echo
         run: echo "${{ matrix.repo }}"
