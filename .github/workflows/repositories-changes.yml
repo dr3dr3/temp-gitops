@@ -38,7 +38,7 @@ jobs:
     steps:
 
       - name: Check repo exists
-        uses: actions/github-script@v7
+        uses: actions/github-script@v6
         id: exists
         with:
           result-encoding: string
