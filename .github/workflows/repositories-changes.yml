@@ -45,11 +45,10 @@ jobs:
         with:
           result-encoding: string
           script: |
-            await github.rest.issues.create({
+            await github.rest.issues.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Testing Workflow',
-              body: '${{ matrix.name }}'
+              number: 2
             })
 
       - name: Result
