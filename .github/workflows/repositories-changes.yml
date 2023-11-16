@@ -65,7 +65,7 @@ jobs:
       #       console.log('test')
 
       - name: Result
-        run: echo '{ ${{ steps.repos-get.outputs.result }} }'
+        run: echo '{ ${{ steps.repos-get.outputs.repo }} }'
 
       - name: Console Log
-        run: console.log ({ ${{ steps.repos-get.outputs.result }} })
+        run: console.log({ ${{ steps.repos-get.outputs.result }} })
