@@ -45,11 +45,12 @@ jobs:
           script: |
             github.rest.repos.get({
               owner: context.repo.owner,
-              repo: ${{ matrix.repo }}
+              repo: 'ss-gitops'
             })
 
-      - name: Get result
-        run: echo "${{ steps.exists.outputs.result }}"
+      - run: echo "${{ steps.exists.outputs.result }}"
+
+      - run: echo "${{ matrix }}"
 
 
         # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}'
