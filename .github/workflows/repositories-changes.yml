@@ -47,7 +47,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: 'Testing Workflow',
-              body: ${{ matrix.name }}
+              body: '${{ matrix.name }}'
             })
 
       - name: Result
