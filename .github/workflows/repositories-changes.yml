@@ -51,18 +51,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: .github/actions-scripts/repos-get.mjs
 
-      - name: Check repo exists
-        uses: actions/github-script@v7
-        id: exists
-        with:
-          result-encoding: string
-          debug: true
-          script: |
-            await github.rest.repos.get({
-              owner: 'dr3dr3',
-              repo: 'base-gitops'
-            }).archived;
-
       - name: Result
-        run: echo '{ ${{ steps.exists.outputs.result }} }'
+        run: echo '{ ${{ steps.repos-get.outputs.result }} }'
 

@@ -10,15 +10,19 @@ const octokit = getOctokit(process.env.GITHUB_TOKEN);
 main();
 
 async function getRepo() {
-  const { data: results } = await octokit.rest.repos.get({
-    owner: 'dr3dr3',
-    repo: 'base-gitops',
-  });
-  console.log({ results });
-  return results;
+    const {
+        owner: { owner },
+        repo: { repo },
+    } = context;
+    const { data: results } = await octokit.rest.repos.get({
+        owner,
+        repo,
+    }).archived;
+    console.log( results );
+    return results;
 }
 
 async function main() {
-  const repo = await getRepo();
-  setOutput("repo", repo);
+    const result = await getRepo();
+    setOutput("result", result);
 }
