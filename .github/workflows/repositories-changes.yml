@@ -45,14 +45,14 @@ jobs:
       - name: Install Node dependencies
         run: npm install --no-save @actions/core @actions/github
 
-      - name: Get repo
-        id: repos-get
+      - name: Check repo exists
+        id: repo-exists
         run: .github/actions-scripts/repo-check-exists.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.SETUP_PAT }}
+          GHA_TOKEN: ${{ secrets.SETUP_PAT }}
           REPO_OWNER: ${{ github.repository_owner	 }}
           REPO_NAME: ${{ matrix.name }}
 
       - name: Result
-        run: echo '{ ${{ steps.repos-get.outputs.result }} }'
+        run: echo '{ ${{ steps.repo-exists.outputs.result }} }'
 
