@@ -51,7 +51,7 @@ jobs:
             });
 
       - name: Result
-        run: echo ${{ steps.exists.outputs.result }}
+        run: echo '${{ steps.exists.outputs.result }}' | jq -c
 
       - name: Echo
         run: echo "${{ matrix.repo }}"
