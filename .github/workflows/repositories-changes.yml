@@ -43,7 +43,10 @@ jobs:
         with:
           result-encoding: string
           script: |
-            await github.rest.users.getAuthenticated()
+            github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: ${{ matrix.repo }}
+            })
 
       - name: Get result
         run: echo "${{ steps.exists.outputs.result }}"
