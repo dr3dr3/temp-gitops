@@ -34,8 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
-    permissions: 
-      issues: write
+    permissions: write-all
 
     steps:
 
@@ -45,9 +44,9 @@ jobs:
         with:
           result-encoding: string
           script: |
-            await github.rest.repos.getViews({
-              'dr3dr3',
-              'base-gitops'
+            await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
             });
 
       - name: Result
