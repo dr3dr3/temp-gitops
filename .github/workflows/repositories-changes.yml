@@ -45,7 +45,7 @@ jobs:
           script: |
             github.rest.repos.get({
               owner: 'dr3dr3',
-              repo: 'base-gitops',              
+              repo: 'base-gitops'
             })
 
       - name: Get result
