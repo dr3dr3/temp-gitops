@@ -13,7 +13,6 @@ jobs:
     #  GH_TOKEN: ${{ secrets.GITOPS_REPOS }}
     outputs:
       matrix-solutions: ${{ steps.solution-repos.outputs.SOLUTIONS }}
-
     steps:
 
       - name: Checkout GitOps
@@ -35,26 +34,38 @@ jobs:
     strategy:
       matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
     permissions: write-all
-
     steps:
 
-      - name: Check repo exists
-        uses: actions/github-script@v7
-        id: exists
-        with:
-          #result-encoding: string
-          debug: true
-          script: |
-            await github.rest.repos.get({
-              owner: 'dr3dr3',
-              repo: 'base-gitops'
-            });
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+
+      - name: Install Node dependencies
+        run: npm install --no-save @actions/core @actions/github
+
+      - name: Get repo
+        id: repos-get
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: .github/actions-scripts/repos-get.mjs
+
+      # - name: Check repo exists
+      #   uses: actions/github-script@v7
+      #   id: exists
+      #   with:
+      #     #result-encoding: string
+      #     debug: true
+      #     script: |
+      #       await github.rest.repos.get({
+      #         owner: 'dr3dr3',
+      #         repo: 'base-gitops'
+      #       });
+      #       console.log('test')
 
       - name: Result
-        run: echo '${{ steps.exists.outputs.result }}' | jq -c
+        run: echo '{ ${{ steps.repos-get.outputs.result }} }'
 
-      - name: Echo
-        run: echo "${{ matrix.repo }}"
-
-
-        # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}' | jq -r
+      - name: Console Log
+        run: console.log ({ ${{ steps.repos-get.outputs.result }} })
