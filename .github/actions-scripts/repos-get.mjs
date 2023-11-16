@@ -13,7 +13,7 @@ main();
 
 async function getRepo() {
     const { data: results } = await octokit.rest.repos.get({
-        owner: proess.env.REPO_OWNER,
+        owner: process.env.REPO_OWNER,
         repo: process.env.REPO_NAME,
         }).archived;
     console.log( results );
