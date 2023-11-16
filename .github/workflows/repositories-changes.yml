@@ -43,14 +43,14 @@ jobs:
         with:
           result-encoding: string
           script: |
-            github.rest.repos.get({
+            await github.rest.repos.get({
               owner: context.repo.owner,
               repo: 'ss-gitops'
             })
 
       - run: echo "${{ steps.exists.outputs.result }}"
 
-      - run: echo "${{ matrix }}"
+      - run: echo $( ${{ matrix }} | jq -r)
 
 
-        # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}'
+        # '{"include":[{"name":"start","repo":"base-start"},{"name":"test","repo":"base-start"}]}' | jq -r
