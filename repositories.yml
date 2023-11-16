@@ -10,15 +10,6 @@ repositories:
       secret-GHA_PAT: true
       secret-IFTTT: true
       ci-deploy-to: GHP
-    - name: test
-      repo: base-start
-      status: new
-      # new | updated | inactive | removed
-      var-CI_PATTERN: TBD_MAIN
-      var-SITE_URL: https://ci-slides.andredreyer.com/
-      secret-GHA_PAT: true
-      secret-IFTTT: true
-      ci-deploy-to: GHP
   core:
     pipeline:
       repo: null

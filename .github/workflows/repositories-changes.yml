@@ -42,7 +42,7 @@ jobs:
         uses: actions/github-script@v7
         id: exists
         with:
-          result-encoding: string
+          #result-encoding: string
           debug: true
           script: |
             await github.rest.repos.get({
@@ -51,7 +51,7 @@ jobs:
             });
 
       - name: Result
-        run: echo "${{ toJson(steps.exists.outputs.result) }}"
+        run: echo ${{ steps.exists.outputs.result }}
 
       - name: Echo
         run: echo "${{ matrix.repo }}"
