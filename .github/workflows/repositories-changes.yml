@@ -47,9 +47,11 @@ jobs:
 
       - name: Get repo
         id: repos-get
+        run: .github/actions-scripts/repos-get.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: .github/actions-scripts/repos-get.mjs
+          REPO_OWNER: ${{ github.repository_owner	 }}
+          REPO_NAME: ${{ matrix.name }}
 
       - name: Result
         run: echo '{ ${{ steps.repos-get.outputs.result }} }'
