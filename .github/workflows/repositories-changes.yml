@@ -43,10 +43,11 @@ jobs:
         id: exists
         with:
           result-encoding: string
+          debug: true
           script: |
             await github.rest.repos.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: 'dr3dr3',
+              repo: 'base-gitops'
             });
 
       - name: Result
