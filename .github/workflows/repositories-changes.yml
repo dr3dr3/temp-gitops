@@ -52,7 +52,7 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
 
       - name: Create repo
-        if: ${{ steps.repo-exists.outputs.result != true  }}
+        if: ${{ steps.repo-exists.outputs.result != 'true'  }}
         run: .github/actions-scripts/repo-create-using-template.mjs
         env:
           GHA_TOKEN: ${{ secrets.SETUP_PAT }}
