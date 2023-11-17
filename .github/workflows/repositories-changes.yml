@@ -1,5 +1,5 @@
 name: REPOSITORY-CHANGES
-run-name: Something
+run-name: Event ${{ github.event_name }} run by ${{ github.actor }} 
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
     #env:
     #  GH_TOKEN: ${{ secrets.GITOPS_REPOS }}
     outputs:
-      matrix-solutions: ${{ steps.solution-repos.outputs.SOLUTIONS }}
+      matrix-repos: ${{ steps.repos.outputs.SOLUTIONS }}
     steps:
 
       - name: Checkout GitOps
@@ -21,18 +21,18 @@ jobs:
       - run: echo $(yq -V)
 
       - name: Get Solution Repo's
-        id: solution-repos
+        id: repos
         run: |
-          soln=$(yq '{"include": .repositories.solutions }' repositories.yml -o=json | jq -c)
-          echo $soln
-          echo "SOLUTIONS=$soln" >> $GITHUB_OUTPUT
+          repos=$(yq '{"include": .repositories.solutions + .repositories.pipeline + .repositories.deployment }' repositories.yml -o=json | jq -c)
+          echo $repos
+          echo "SOLUTIONS=$repos" >> $GITHUB_OUTPUT
 
   make-changes:
     name: Make changes to repos
     needs: [get-config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON(needs.get-config.outputs.matrix-solutions) }}
+      matrix: ${{ fromJSON(needs.get-config.outputs.matrix-repos) }}
     permissions: write-all
     steps:
 
@@ -51,8 +51,15 @@ jobs:
         env:
           GHA_TOKEN: ${{ secrets.SETUP_PAT }}
           REPO_OWNER: ${{ github.repository_owner	 }}
-          REPO_NAME: ${{ matrix.name }}
+          REPO_NAME: ${{ matrix.repo }}
 
-      - name: Result
-        run: echo '{ ${{ steps.repo-exists.outputs.result }} }'
+      - name: Create repo
+        if: ${{ steps.repo-exists.outputs.result != true  }}
+        run: .github/actions-scripts/repo-check-exists.mjs
+        env:
+          GHA_TOKEN: ${{ secrets.SETUP_PAT }}
+          REPO_TEMPLATE: ${{ matrix.repo-template	 }}
+          REPO_OWNER: ${{ github.repository_owner	 }}
+          REPO_NAME: ${{ matrix.repo }}
+          REPO_DESC: ${{ matrix.repo-description }}
 
