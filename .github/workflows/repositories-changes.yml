@@ -18,8 +18,6 @@ jobs:
       - name: Checkout GitOps
         uses: actions/checkout@v3
 
-      - run: echo $(yq -V)
-
       - name: Get Solution Repo's
         id: repos
         run: |
