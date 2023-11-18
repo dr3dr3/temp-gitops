@@ -1,32 +1,64 @@
 repositories:
+
   solutions:
+
     - name: start
       repo: temp-slidev
       repo-description: 'Micro-frontend for slides using Sli.dev'
       repo-template: 'template-slidev'
-      status: new
-      # new | updated | inactive | removed
-      var-CI_PATTERN: TBD_MAIN
-      var-SITE_URL: https://ci-slides.andredreyer.com/
-      secret-GHA_PAT: true
-      secret-IFTTT: true
+      status: active
+      path: root
+      sbx-deploy-to: NA
       ci-deploy-to: GHP
+      variables:
+        - name: SITE_URL
+          value: https://ci-slides.andredreyer.com/
+      secrets:
+        - ifttt: false
+        - test: true
+        - name: CHECK_LINKS
+          value: false
+
   pipeline:
+
     - name: pipeline
-      repo: ss-pipeline
+      repo: temp-pipeline
       repo-description: 'Continuous Delivery Pipeline using GitHub Action Workflows'
-      repo-template: 'template-slidev'
-      secret-GHA_PAT: true
+      repo-template: 'template-pipeline'
+      variables:
+        - name: REPO_GITOPS
+          value: base-gitops
+
+    - name: gitops
+      repo: base-gitops
+      repo-description: 'Configuration Management and IaC using GitHub Action Workflows'
+      repo-template: 'template-gitops'
+      variables:
+        - name: REPO_PIPELINE
+          value: temp-pipeline
+
   deployment:
+
     - name: stage
-      repo: devops-demo-stg
+      repo: temp-stg
       repo-description: 'Repository for running deployments to Stage'
-      repo-template: 'template-slidev'
-      var-GHP_ENV: stg
-      var-SITE_URL: https://stg.andredreyer.com/
+      repo-template: 'template-deployment'
+      blue-deploy-to: GHP
+      green-deploy-to: NA
+      varibles:
+        - name: SITE_URL
+          value: https://stg.andredreyer.com/
+        - name: CHECK_LINKS
+          value: true
+
     - name: production
-      repo: devops-demo-prd
+      repo: temp-prd
       repo-description: 'Repository for running deployments to Production'
-      repo-template: 'template-slidev'
-      var-GHP_ENV: prd
-      var-SITE_URL: https://www.andredreyer.com/
+      repo-template: 'template-deployment'
+      blue-deploy-to: GHP
+      green-deploy-to: NA
+      variables:
+        - name: SITE_URL
+          value: https://www.andredreyer.com/
+        - name: CHECK_LINKS
+          value: true
