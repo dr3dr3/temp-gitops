@@ -71,7 +71,7 @@ jobs:
 
       - name: Create variables
         if: ${{ matrix.variables }}
-        run: .github/actions-scripts/repo-check-exists.mjs
+        run: .github/actions-scripts/repo-create-variables.mjs
         env:
           GHA_TOKEN: ${{ secrets.SETUP_PAT }}
           REPO_OWNER: ${{ github.repository_owner }}
