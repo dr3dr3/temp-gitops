@@ -25,9 +25,6 @@ repositories:
       repo: temp-pipeline
       repo-description: 'Continuous Delivery Pipeline using GitHub Action Workflows'
       repo-template: 'template-pipeline'
-      variables:
-        - name: REPO_GITOPS
-          value: base-gitops
 
     - name: gitops
       repo: base-gitops
