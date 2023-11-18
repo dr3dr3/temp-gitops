@@ -69,7 +69,7 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
 
-      - run: echo ${{ matrix.variable }}
+      - run: echo ${{ matrix.variables }}
 
       - name: Create variables
         if: ${{ matrix.variables }}
