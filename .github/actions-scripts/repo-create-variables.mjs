@@ -14,6 +14,7 @@ main();
 
 async function createRepoVariables() {
     const items = JSON.parse(process.env.REPO_VARS);
+    console.log(items)
     for (const { name, value } of items) {
         const { status:varCreated } = await octokit.rest.actions.createRepoVariable({
             owner: process.env.REPO_OWNER,
@@ -27,6 +28,7 @@ async function createRepoVariables() {
 }
 
 async function main() {
+    console.log(process.env.REPO_VARS)
     const result = await createRepoVariables();
     setOutput("result", result);
 };
