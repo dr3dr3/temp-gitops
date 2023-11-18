@@ -76,6 +76,6 @@ jobs:
           GHA_TOKEN: ${{ secrets.SETUP_PAT }}
           REPO_OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ matrix.repo }}
-          REPO_VARS: ${{ matrix.variables }}
+          REPO_VARS: ${{ fromJson(matrix.variables) }}
   
 ### GHA_TOKEN=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 REPO_OWNER=dr3dr3 REPO_NAME=temp-slidev REPO_VARS='[{"name":"SITE_URL","value":"https://ci-slides.andredreyer.com/"}]' node .github/actions-scripts/repo-create-variables.mjs
