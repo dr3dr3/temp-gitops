@@ -69,6 +69,8 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
 
+      - run: console.log( ${{ matrix.variable }} )
+
       - name: Create variables
         if: ${{ matrix.variables }}
         run: .github/actions-scripts/repo-create-variables.mjs
