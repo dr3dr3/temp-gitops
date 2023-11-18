@@ -13,7 +13,7 @@ const octokit = getOctokit(process.env.GHA_TOKEN);
 main();
 
 async function createRepoVariables() {
-    const items = JSON.parse('[{"name":"SITE_URL","value":"https://ci-slides.andredreyer.com/"}]');
+    const items = JSON.parse(process.env.REPO_VARS);
     for (const { name, value } of items) {
         const { status:varCreated } = await octokit.rest.actions.createRepoVariable({
             owner: process.env.REPO_OWNER,
