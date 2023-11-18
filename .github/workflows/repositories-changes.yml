@@ -69,3 +69,12 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
 
+      - name: Create variables
+        if: ${{ matrix.variables }}
+        run: .github/actions-scripts/repo-check-exists.mjs
+        env:
+          GHA_TOKEN: ${{ secrets.SETUP_PAT }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ matrix.repo }}
+  
+### GHA_TOKEN=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 REPO_OWNER=dr3dr3 REPO_NAME=temp-slidev REPO_VARS='[{"name":"SITE_URL","value":"https://ci-slides.andredreyer.com/"}]' node .github/actions-scripts/repo-create-variables.mjs
