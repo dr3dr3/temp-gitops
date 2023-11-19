@@ -1,7 +1,5 @@
 repositories:
-
   solutions:
-
     - name: start
       repo: temp-slidev
       repo-description: 'Micro-frontend for slides using Sli.dev'
@@ -10,52 +8,25 @@ repositories:
       path: root
       sbx-deploy-to: NA
       ci-deploy-to: GHP
-      variables:
-        - name: SITE_URL
-          value: https://ci-slides.andredreyer.com/
-      secrets:
-        - ifttt: false
-        - test: true
-        - name: CHECK_LINKS
-          value: false
-
   pipeline:
-
     - name: pipeline
       repo: temp-pipeline
       repo-description: 'Continuous Delivery Pipeline using GitHub Action Workflows'
       repo-template: 'template-pipeline'
-
     - name: gitops
       repo: base-gitops
       repo-description: 'Configuration Management and IaC using GitHub Action Workflows'
       repo-template: 'template-gitops'
-      variables:
-        - name: REPO_PIPELINE
-          value: temp-pipeline
-
   deployment:
-
     - name: stage
       repo: temp-stg
       repo-description: 'Repository for running deployments to Stage'
       repo-template: 'template-deployment'
       blue-deploy-to: GHP
       green-deploy-to: NA
-      varibles:
-        - name: SITE_URL
-          value: https://stg.andredreyer.com/
-        - name: CHECK_LINKS
-          value: true
-
     - name: production
       repo: temp-prd
       repo-description: 'Repository for running deployments to Production'
       repo-template: 'template-deployment'
       blue-deploy-to: GHP
       green-deploy-to: NA
-      variables:
-        - name: SITE_URL
-          value: https://www.andredreyer.com/
-        - name: CHECK_LINKS
-          value: true

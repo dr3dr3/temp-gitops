@@ -1,0 +1,16 @@
+repo-variables:
+  - name: SITE_URL
+    repo: temp-slidev
+    value: https://ci-slides.andredreyer.com/
+  - name: SITE_URL
+    repo: temp-stg
+    value: https://stg.andredreyer.com/
+  - name: CHECK_LINKS
+    repo: temp-stg
+    value: true
+  - name: SITE_URL
+    repo: temp-stg
+    value: https://www.andredreyer.com/
+  - name: CHECK_LINKS
+    repo: temp-stg
+    value: true

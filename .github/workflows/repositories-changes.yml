@@ -69,14 +69,9 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
 
-      - run: echo '${{ matrix.variables }}'
-
-      - name: Create variables
-        run: .github/actions-scripts/repo-create-variables.mjs
-        env:
-          GHA_TOKEN: ${{ secrets.SETUP_PAT }}
-          REPO_OWNER: ${{ github.repository_owner }}
-          REPO_NAME: ${{ matrix.repo }}
-          REPO_VARS: '${{ matrix.variables }}'
-  
-### GHA_TOKEN=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 REPO_OWNER=dr3dr3 REPO_NAME=temp-slidev REPO_VARS='[{"name":"SITE_URL","value":"https://ci-slides.andredreyer.com/"}]' node .github/actions-scripts/repo-create-variables.mjs
+      # - name: Create variables
+      #   run: yq '.repo-variables' repo-variables.yml -o=json | jq '.[]' | while read i; do REPO_NAME=$i.repo VAR_NAME=$i.name VAR_VAL=$i.value .github/actions-scripts/repo-create-variable.mjs; done
+      #   env:
+      #     GHA_TOKEN: ${{ secrets.SETUP_PAT }}
+      #     REPO_OWNER: ${{ github.repository_owner }}
+      #     REPO_NAME: ${{ matrix.repo }}
