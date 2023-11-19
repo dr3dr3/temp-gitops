@@ -9,8 +9,8 @@ repo-variables:
     repo: temp-stg
     value: true
   - name: SITE_URL
-    repo: temp-stg
+    repo: temp-prd
     value: https://www.andredreyer.com/
   - name: CHECK_LINKS
-    repo: temp-stg
+    repo: temp-prd
     value: true

@@ -17,7 +17,7 @@ async function checkUsersRepos() {
         type: 'owner'
         });
     const repoListFiltered = repoList.filter( repoName => repoName.name === process.env.REPO_NAME );
-    const repoExists = (repoListFiltered.length == 0) ? false : true
+    const repoExists = (repoListFiltered.length == 1 ) ? true : false
     console.log( repoListFiltered );
     return repoExists;
 }
