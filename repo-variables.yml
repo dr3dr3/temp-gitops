@@ -14,3 +14,12 @@ repo-variables:
   - name: CHECK_LINKS
     repo: temp-prd
     value: true
+  - name: DEPLOY_CI
+    repo: temp-slidev
+    value: GITHUB-PAGES
+  - name: SOLUTION
+    repo: temp-slidedev
+    value: SLIDEV
+  - name: REPO_PIPELINE
+    repo: temp-slidedev
+    value: dr3dr3/temp-pipeline
