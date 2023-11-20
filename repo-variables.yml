@@ -18,8 +18,8 @@ repo-variables:
     repo: temp-slidev
     value: GITHUB-PAGES
   - name: SOLUTION
-    repo: temp-slidedev
+    repo: temp-slidev
     value: SLIDEV
   - name: REPO_PIPELINE
-    repo: temp-slidedev
+    repo: temp-slidev
     value: dr3dr3/temp-pipeline
