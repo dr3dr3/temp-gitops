@@ -7,7 +7,7 @@ repositories:
       status: active
       path: root
       sbx-deploy-to: NA
-      ci-deploy-to: GHP
+      ci-deploy-to: GITHUB-PAGES
   pipeline:
     - name: pipeline
       repo: temp-pipeline
@@ -22,11 +22,11 @@ repositories:
       repo: temp-stg
       repo-description: 'Repository for running deployments to Stage'
       repo-template: 'template-deployment'
-      blue-deploy-to: GHP
+      blue-deploy-to: GITHUB-PAGES
       green-deploy-to: NA
     - name: production
       repo: temp-prd
       repo-description: 'Repository for running deployments to Production'
       repo-template: 'template-deployment'
-      blue-deploy-to: GHP
+      blue-deploy-to: GITHUB-PAGES
       green-deploy-to: NA

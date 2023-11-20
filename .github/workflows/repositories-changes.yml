@@ -4,18 +4,22 @@ run-name: Event ${{ github.event_name }} run by ${{ github.actor }}
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
 
   get-config:
     name: Repositories GitOps
     runs-on: ubuntu-latest
-    #env:
-    #  GH_TOKEN: ${{ secrets.GITOPS_REPOS }}
+    permissions:
+      contents: write
     outputs:
       matrix-repos: ${{ steps.repos.outputs.SOLUTIONS }}
+
     steps:
 
-      - name: Checkout GitOps
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Get Solution Repo's
@@ -31,7 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJSON(needs.get-config.outputs.matrix-repos) }}
-    permissions: write-all
+    permissions:
+      contents: write
+      
     steps:
 
       - name: Checkout
@@ -68,10 +74,3 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner	 }}
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
-
-      # - name: Create variables
-      #   run: yq '.repo-variables' repo-variables.yml -o=json | jq '.[]' | while read i; do REPO_NAME=$i.repo VAR_NAME=$i.name VAR_VAL=$i.value .github/actions-scripts/repo-create-variable.mjs; done
-      #   env:
-      #     GHA_TOKEN: ${{ secrets.SETUP_PAT }}
-      #     REPO_OWNER: ${{ github.repository_owner }}
-      #     REPO_NAME: ${{ matrix.repo }}
