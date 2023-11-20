@@ -20,6 +20,24 @@ repo-variables:
   - name: SOLUTION
     repo: temp-slidev
     value: SLIDEV
-  - name: REPO_PIPELINE
+  - name: REPO_STAGE
     repo: temp-slidev
-    value: dr3dr3/temp-pipeline
+    value: dr3dr3/temp-stg
+  - name: REPO_PROD
+    repo: temp-slidev
+    value: dr3dr3/temp-prd
+  - name: DEPLOY_BLUE
+    repo: temp-prd
+    value: GITHUB-PAGES
+  - name: ENVIRONMENT
+    repo: temp-stg
+    value: stg
+  - name: ENVIRONMENT
+    repo: temp-prd
+    value: prd
+  - name: REPO_GITOPS
+    repo: temp-stg
+    value: dr3dr3/temp-gitops
+  - name: REPO_GITOPS
+    repo: temp-prd
+    value: dr3dr3/temp-gitops
