@@ -74,3 +74,8 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner	 }}
           REPO_NAME: ${{ matrix.repo }}
           REPO_DESC: ${{ matrix.repo-description }}
+
+      - name: GHA Summary
+        if: ${{ steps.repo-exists.outputs.result != 'true'  && steps.template-exists.outputs.result == 'true' }}
+        # TODO: change 'if' to use output from script
+        run: echo "Repo ${{ matrix.repo }} created" >> $GITHUB_STEP_SUMMARY

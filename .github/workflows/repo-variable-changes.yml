@@ -61,4 +61,4 @@ jobs:
           VAR_VAL: ${{ matrix.value }}
 
       - name: GHA Summary
-        run: echo "Variable: ${{ matrix.name }} created/updated" >> $GITHUB_STEP_SUMMARY
+        run: echo "Variable ${{ matrix.name }} created/updated" >> $GITHUB_STEP_SUMMARY
