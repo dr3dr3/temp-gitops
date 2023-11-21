@@ -1,25 +1,34 @@
 repo-variables:
+  - name: SOLUTION
+    repo: temp-slidev
+    value: SLIDEV
   - name: SITE_URL
     repo: temp-slidev
     value: https://ci-slides.andredreyer.com/
   - name: SITE_URL
     repo: temp-stg
     value: https://stg.andredreyer.com/
-  - name: CHECK_LINKS
-    repo: temp-stg
-    value: true
   - name: SITE_URL
     repo: temp-prd
     value: https://www.andredreyer.com/
+  - name: CHECK_LINKS
+    repo: temp-slidev
+    value: true
+  - name: CHECK_LINKS
+    repo: temp-stg
+    value: true
   - name: CHECK_LINKS
     repo: temp-prd
     value: true
   - name: DEPLOY_CI
     repo: temp-slidev
     value: GITHUB-PAGES
-  - name: SOLUTION
-    repo: temp-slidev
-    value: SLIDEV
+  - name: REPO_GITOPS
+    repo: temp-stg
+    value: dr3dr3/temp-gitops
+  - name: REPO_GITOPS
+    repo: temp-prd
+    value: dr3dr3/temp-gitops
   - name: REPO_STAGE
     repo: temp-slidev
     value: dr3dr3/temp-stg
@@ -35,9 +44,3 @@ repo-variables:
   - name: ENVIRONMENT
     repo: temp-prd
     value: prd
-  - name: REPO_GITOPS
-    repo: temp-stg
-    value: dr3dr3/temp-gitops
-  - name: REPO_GITOPS
-    repo: temp-prd
-    value: dr3dr3/temp-gitops
