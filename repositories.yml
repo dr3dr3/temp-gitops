@@ -4,8 +4,8 @@ repositories:
       repo: temp-slidev
       repo-description: 'Micro-frontend for slides using Sli.dev'
       repo-template: 'template-slidev'
+      route: root
       status: active
-      path: root
       sbx-deploy-to: NA
       ci-deploy-to: GITHUB-PAGES
   pipeline:
